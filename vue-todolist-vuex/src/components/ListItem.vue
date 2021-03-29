@@ -3,8 +3,8 @@
         <span class="left pointer" :class="{deleted: finished===true}" v-if="!editable"  @click="toggleState">{{text}}</span>
         <input class="left" type="text" v-else v-model="text" @keyup.enter="finishEdit" @blur="finishEdit">
         <span class="right">
-            <span class="btn glyphicon glyphicon-edit" aria-hidden="true" @click="editTodo"></span>
-            <span class="btn glyphicon glyphicon-trash" aria-hidden="true"  @click="deleteTodo"></span>
+            <div class="btn glyphicon glyphicon-edit" aria-hidden="true" @click="editTodo"></div>
+            <div class="btn glyphicon glyphicon-trash" aria-hidden="true"  @click="deleteTodo"></div>
         </span>
     </div>
 </template>
@@ -53,12 +53,8 @@
     .list-item {
         display: flex;
         height: 60px;
-        font-size: 1.2em;
         line-height: 60px;
         border: gray solid 1px;
-    }
-    .list-item:hover {
-        background-color: lightgray;
     }
     .left {
         flex: 8;
@@ -84,7 +80,8 @@
         line-height: 60px;
         flex: 2;
         text-align: right;
-        padding-right: 14px;
+        display: flex;
+        align-items: center;
     }
     .right .btn:hover {
         color: blue;
