@@ -18,10 +18,10 @@ export default {
     }
   },
   mounted() {
-    this.scroll = new BScroll(this.$refs.scroll, {
+    this.scroll = new BScroll('.wrapper', {
       click: true, // 默认scroll内click无效
       probeType: this.probeType, // 开启实时监听
-      pullUpLoad: this.pullUpLoad, // 开启到底部加载更多
+      pullUpLoad: this.pullUpLoad, // 設爲true后可以監聽pullingUp事件
     })
     // 监听滚动位置发送位置给父组件，显示/隐藏backTOp按钮
     this.scroll.on('scroll',(pos)=>{
@@ -49,5 +49,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

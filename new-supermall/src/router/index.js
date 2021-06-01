@@ -1,12 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-const Home = () => import('views/home/Home')
-const Category = () => import('views/category/Category')
-const Cart = () => import('views/cart/Cart')
-const Profile = () => import('views/profile/Profile')
-const Detail = () => import('views/detail/Detail')
-
 // 1. 安装插件
 Vue.use(VueRouter)
 
@@ -21,19 +15,19 @@ const routes = [
     redirect: '/home'
   }, {
     path: '/home',
-    component: Home
+    component: () => import('views/home/Home')
   }, {
     path: '/category',
-    component: Category
+    component: () => import('views/category/Category')
   }, {
     path: '/cart',
-    component: Cart
+    component: () => import('views/cart/Cart')
   }, {
     path: '/profile',
-    component: Profile
+    component: () => import('views/profile/Profile')
   }, {
     path: '/detail/:iid',
-    component: Detail
+    component: () => import('views/detail/Detail')
   }
 ]
 const router = new VueRouter({

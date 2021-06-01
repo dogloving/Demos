@@ -2,6 +2,7 @@
   <div id="home">
     <!-- navbar -->
     <nav-bar class="home-nav">
+      <!-- <span slot="center">購物街</span> -->
       <template v-slot:center><span>购物街</span></template>
     </nav-bar>
     <!-- 下面这个是为了实现tabControl的吸顶效果 -->
@@ -10,7 +11,7 @@
       v-show="tabControlFixed"></tab-control>
     <scroll class="content" ref="homeScroll" :probe-type="3" :pull-up-load="true" @scroll="contentScroll"
       @loadMore="loadMore">
-      <template>
+      <!-- <template> -->
         <div>
           <!-- 轮播图 -->
           <home-swiper :banners="banners"></home-swiper>
@@ -19,12 +20,13 @@
           <!-- 本周流行 -->
           <home-feature class="feature"></home-feature>
           <!-- 流行-新款-精选 -->
+          <!-- 這裏給他設置position:sticky不生效，是因爲他在scroll組件中 -->
           <tab-control :titles="['流行','新款','精选']" class="tab-control"
             @itemClick="itemClick" :current-index="currentIndex" ref="tabControl"></tab-control>
           <!-- 商品展示 -->
           <goods-list :goods="goods[currentType].list"></goods-list>
         </div>
-      </template>
+      <!-- </template> -->
     </scroll>
     <back-top class="back-top" @click.native="backTop" v-show="showBackTop"></back-top>
   </div>
@@ -142,7 +144,7 @@ export default {
   margin-top: -20px;
 }
 .tab-control {
-  /* position: sticky;
+  /* position: sticky!important;
   top: 43px;
   z-index: 10; */
   background-color: #fff;

@@ -1,6 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+const STORAGE_NAME = 'shopcart';
+function setData(data) {
+  window.localStorage.setItem(STORAGE_NAME,JSON.stringify(data));
+}
+function getData() {
+  return JSON.parse(window.localStorage.getItem(STORAGE_NAME)||'{}');
+}
+
 // 1. 安装插件
 Vue.use(Vuex)
 
@@ -8,7 +16,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     // iid，image,title,desc,count,price
-    cart: {}
+    cart: getData(),
   },
   mutations: {
     addToCart(state, payload) {
@@ -18,7 +26,7 @@ const store = new Vuex.Store({
         // state.cart[payload.iid] = payload
         Vue.set(state.cart,payload.iid,payload)
       }
-      localStorage.setItem('shopcart',JSON.stringify(state.cart))
+      setData(state.cart);
     },
     deleteFromCart(state,payload) {
       if (payload.iid in state.cart) {
@@ -28,7 +36,7 @@ const store = new Vuex.Store({
           Vue.delete(state.cart,payload.iid)
         }
       }
-      localStorage.setItem('shopcart',JSON.stringify(state.cart))
+      setData(state.cart);
     },
     restore(state,payload) {
       state.cart = payload['shopcart']
